@@ -7,14 +7,17 @@
 		<id property="id" jdbcType="BIGINT" javaType="Long" column="id" />
 		<result property="userName" jdbcType="VARCHAR" javaType="String" column="user_name" />
 		<result property="passWord" jdbcType="VARCHAR" javaType="String" column="pass_word" />
+		<result property="email" jdbcType="VARCHAR" javaType="String" column="email" />
+		<result property="nickName" jdbcType="VARCHAR" javaType="String" column="nick_name" />
+		<result property="regTime" jdbcType="TIMESTAMP" javaType="java.util.Date" column="reg_time" />
 	</resultMap>
 
 
 	<sql id="sql_baseField">
-		id, user_name, pass_word
+		id, user_name, pass_word, email, nick_name, reg_time
 	</sql>
 	<sql id="sql_baseField2">
-		user_name, pass_word
+		user_name, pass_word, email, nick_name, reg_time
 	</sql>
 
 	<select id="findAll" resultMap="baseResultMap">
@@ -27,6 +30,13 @@
 		select
 		<include refid="sql_baseField" />
 		from user
+	</select>
+	
+	<select id="findByUserName" resultMap="baseResultMap">
+		select
+		<include refid="sql_baseField" />
+		from user 
+		where user_name = #{userName}
 	</select>
 
 	<insert id="save" parameterType="com.tangj.springboot.entity.UserDTO" keyProperty="id" useGeneratedKeys="true">

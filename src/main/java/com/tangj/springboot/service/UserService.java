@@ -17,7 +17,20 @@ public interface UserService {
 
 	Page<UserDTO> findByUserName(String userName, Pageable pageable);
 
+	/**
+	 * 使用jpa查询
+	 * @param userName
+	 * @param sort
+	 * @return
+	 */
 	List<UserDTO> findByUserName(String userName, Sort sort);
+	
+	/**
+	 * 使用mybatis查询
+	 * @param userName
+	 * @return
+	 */
+	List<UserDTO> findByUserName2(String userName);
 	
 	Long save(UserDTO user);
 	

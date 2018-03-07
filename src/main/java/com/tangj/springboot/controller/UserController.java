@@ -61,13 +61,25 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/getUserList")
-	@ApiOperation(value = "分页查询用户")
-	public List<UserDTO> getUserList() {
-		int page = 1, size = 10;
+	@ApiOperation(value = "分页查询用户,使用jpa查询")
+	public Object getUserList() {
+		// 页数需从零开始
+		int page = 0, size = 10;
 		Sort sort = new Sort(Direction.DESC, "id");
 		Pageable pageable = new PageRequest(page, size, sort);
-		Page<UserDTO> userPage = userService.findByUserName("testName", pageable);
+		Page<UserDTO> userPage = userService.findByUserName("bb2", pageable);
 		return userPage.getContent();
+	}
+
+	/**
+	 * 分页查询2
+	 * @return
+	 */
+	@RequestMapping("/getUserList2")
+	@ApiOperation(value = "分页查询用户,使用mybatis查询")
+	public Object getUserList2() {
+		List<UserDTO> userList = userService.findByUserName2("bb2");
+		return userList;
 	}
 
 	/**
@@ -77,7 +89,8 @@ public class UserController {
 	@RequestMapping("/hello")
 	public String index() {
 		System.out.println("--------------" + neoProperties.getTitle());
-		String nickName = userService.findByUserNameLike("%bb2%").getNickName();
+		String nickName = "";
+		nickName = userService.findByUserNameLike("%bb2%").getNickName();
 		System.out.println(nickName);
 		return "Hello World";
 	}

@@ -48,11 +48,18 @@ public class UserServiceImpl implements UserService {
 	public List<UserDTO> findByUserName(String userName, Sort sort) {
 		return userRepository.findByUserName(userName, sort);
 	}
+	
+	@Override
+	public List<UserDTO> findByUserName2(String userName) {
+		return userMapper.findByUserName(userName);
+	}
 
 	@Transactional
 	@Override
 	public Long save(UserDTO user) {
 		return userMapper.save(user);
 	}
+
+	
 
 }

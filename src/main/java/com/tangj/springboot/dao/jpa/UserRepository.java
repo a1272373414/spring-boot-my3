@@ -29,10 +29,12 @@ public interface UserRepository extends JpaRepository<UserDTO, Long> {
 	 * 1.自定义的SQL,在SQL的查询方法上面使用@Query注解
 	 * 2.如涉及到删除和修改在需要加上@Modifying
 	 * 3.timeout 查询超时
+	 * 
+	 * 此处的表名需和实体类的名称一致
 	 */
 	@Transactional(timeout = 10)	
 	@Modifying
-	@Query("delete from User where id = ?1")
+	@Query("delete from UserDTO where id = ?1")
 	void deleteByUserId(Long id);
 
 }
