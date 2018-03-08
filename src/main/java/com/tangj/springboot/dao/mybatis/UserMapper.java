@@ -1,4 +1,4 @@
-package com.tangj.springboot.dao.mapper;
+package com.tangj.springboot.dao.mybatis;
 
 import java.util.List;
 

@@ -1,14 +1,18 @@
 package com.tangj.springboot.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import com.tangj.springboot.common.service.BaseService;
 import com.tangj.springboot.entity.UserDTO;
+import com.tangj.springboot.model.UserModel;
 
-public interface UserService {
+public interface UserService extends BaseService<UserDTO, Long> {
+
 	UserDTO findByUserName(String userName);
 
 	UserDTO findByUserNameLike(String userName);
@@ -24,14 +28,56 @@ public interface UserService {
 	 * @return
 	 */
 	List<UserDTO> findByUserName(String userName, Sort sort);
-	
+
 	/**
 	 * 使用mybatis查询
 	 * @param userName
 	 * @return
 	 */
 	List<UserDTO> findByUserName2(String userName);
+
+	/**
+	 * 测试返回Map列表
+	 * @return
+	 */
+	List<Map<String, Object>> testGetMapList();
+
+	/**
+	 * 测试返回Map列表2
+	 * @return
+	 */
+	List<Map<String, Object>> testGetMapList2();
+
+	/**
+	 * 测试返回Map列表3
+	 * @return
+	 */
+	List<Map<String, Object>> testGetMapList3();
+
+	/**
+	 * 测试返回自定义类型数据
+	 * @return
+	 */
+	List<UserModel> testGetModelList();
+
+	/**
+	 * 测试 自定义查询返回所有字段
+	 * @return
+	 */
+	List<UserDTO> testGetAllField();
 	
-	Long save(UserDTO user);
-	
+	/**
+	 * 测试 自定义查询返回部分字段
+	 * @return
+	 */
+	List<UserDTO> testGetSomeField();
+
+	/**
+	 * 测试 使用原生sql
+	 * @return
+	 */
+	List<UserDTO> testNativeQuery();
+
+	// Long save(UserDTO user);
+
 }

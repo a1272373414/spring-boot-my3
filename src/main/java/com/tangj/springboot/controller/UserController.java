@@ -1,6 +1,7 @@
 package com.tangj.springboot.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tangj.springboot.entity.UserDTO;
+import com.tangj.springboot.model.UserModel;
 import com.tangj.springboot.property.NeoProperties;
 import com.tangj.springboot.service.UserService;
 
@@ -93,6 +95,83 @@ public class UserController {
 		nickName = userService.findByUserNameLike("%bb2%").getNickName();
 		System.out.println(nickName);
 		return "Hello World";
+	}
+
+	/**
+	 * 测试返回 Map列表
+	 * @return
+	 */
+	@RequestMapping("/testMapList")
+	@ApiOperation(value = "测试返回List<Map<String, Object>>")
+	public Object testMapList() {
+		List<Map<String, Object>> userList = userService.testGetMapList();
+		return userList;
+	}
+
+	/**
+	 * 测试返回 Map列表
+	 * @return
+	 */
+	@RequestMapping("/testMapList2")
+	@ApiOperation(value = "测试返回List<Map<String, Object>>")
+	public Object testMapList2() {
+		List<Map<String, Object>> userList = userService.testGetMapList2();
+		return userList;
+	}
+
+	/**
+	 * 测试返回 Map列表
+	 * @return
+	 */
+	@RequestMapping("/testMapList3")
+	@ApiOperation(value = "测试返回List<Map<String, Object>>")
+	public Object testMapList3() {
+		List<Map<String, Object>> userList = userService.testGetMapList3();
+		return userList;
+	}
+
+	/**
+	 * 测试返回自定义类型数据
+	 * @return
+	 */
+	@RequestMapping("/testGetModelList")
+	@ApiOperation(value = "测试返回自定义类型数据")
+	public Object testGetModelList() {
+		List<UserModel> userList = userService.testGetModelList();
+		return userList;
+	}
+
+	/**
+	 * 测试 自定义查询返回所有字段
+	 * @return
+	 */
+	@RequestMapping("/testGetAllField")
+	@ApiOperation(value = "测试 自定义查询返回所有字段")
+	public Object testGetAllField() {
+		List<UserDTO> userList = userService.testGetAllField();
+		return userList;
+	}
+
+	/**
+	 * 测试 自定义查询返回部分字段
+	 * @return
+	 */
+	@RequestMapping("/testGetSomeField")
+	@ApiOperation(value = "测试 自定义查询返回部分字段")
+	public Object testGetSomeField() {
+		List<UserDTO> userList = userService.testGetSomeField();
+		return userList;
+	}
+
+	/**
+	 * 测试 使用原生sql
+	 * @return
+	 */
+	@RequestMapping("/testNativeQuery")
+	@ApiOperation(value = "测试 使用原生sql")
+	public Object testNativeQuery() {
+		List<UserDTO> userList = userService.testNativeQuery();
+		return userList;
 	}
 
 }
