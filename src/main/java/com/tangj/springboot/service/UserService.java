@@ -65,7 +65,7 @@ public interface UserService extends BaseService<UserDTO, Long> {
 	 * @return
 	 */
 	List<UserDTO> testGetAllField();
-	
+
 	/**
 	 * 测试 自定义查询返回部分字段
 	 * @return
@@ -77,6 +77,24 @@ public interface UserService extends BaseService<UserDTO, Long> {
 	 * @return
 	 */
 	List<UserDTO> testNativeQuery();
+
+	/**
+	 * 测试 使用原生sql2
+	 * @return
+	 */
+	List<UserDTO> testNativeQuery2();
+
+	/**
+	 * 测试 使用原生sql3
+	 * @return
+	 */
+	List<Object> testNativeQuery3();
+
+	/**
+	 * 测试 使用原生sql4
+	 * @return
+	 */
+	List<UserModel> testNativeQuery4();
 
 	// Long save(UserDTO user);
 

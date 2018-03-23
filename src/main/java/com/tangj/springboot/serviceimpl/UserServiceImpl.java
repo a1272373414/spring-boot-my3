@@ -202,7 +202,7 @@ public class UserServiceImpl implements UserService {
 	public List<UserDTO> testGetAllField() {
 		return userRepository.testGetAllField();
 	}
-	
+
 	@Override
 	public List<UserDTO> testGetSomeField() {
 		return userRepository.testGetSomeField();
@@ -213,6 +213,19 @@ public class UserServiceImpl implements UserService {
 		return userRepository.testNativeQuery();
 	}
 
-	
+	@Override
+	public List<UserDTO> testNativeQuery2() {
+		return userRepository.testNativeQuery2();
+	}
+
+	@Override
+	public List<Object> testNativeQuery3() {
+		return userRepository.testNativeQuery3();
+	}
+
+	@Override
+	public List<UserModel> testNativeQuery4() {
+		return userRepository.testNativeQuery4();
+	}
 
 }

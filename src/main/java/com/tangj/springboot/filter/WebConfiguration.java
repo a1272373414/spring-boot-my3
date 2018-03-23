@@ -10,18 +10,19 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.catalina.filters.RemoteIpFilter;
+//import org.apache.catalina.filters.RemoteIpFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class WebConfiguration {
-	@Bean
-	public RemoteIpFilter remoteIpFilter() {
-		return new RemoteIpFilter();
-	}
 
+	// @Bean
+	// public RemoteIpFilter remoteIpFilter() {
+	// return new RemoteIpFilter();
+	// }
+	//
 	@Bean
 	public FilterRegistrationBean testFilterRegistration() {
 		// 添加自定义过滤器
@@ -46,8 +47,7 @@ public class WebConfiguration {
 		}
 
 		@Override
-		public void doFilter(ServletRequest srequest, ServletResponse sresponse,
-				FilterChain filterChain) throws IOException, ServletException {
+		public void doFilter(ServletRequest srequest, ServletResponse sresponse, FilterChain filterChain) throws IOException, ServletException {
 			// TODO Auto-generated method stub
 			HttpServletRequest request = (HttpServletRequest) srequest;
 			System.out.println("this is MyFilter,url :" + request.getRequestURI());

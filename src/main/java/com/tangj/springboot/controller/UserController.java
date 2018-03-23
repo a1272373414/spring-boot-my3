@@ -40,6 +40,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@RequestMapping("/hello")
+	public String hello() {
+		return "Hello World";
+	}
+
 	@RequestMapping("/getUser")
 	@Cacheable(value = "user-key") // 自动根据方法生成缓存
 	public UserDTO getUser() {
@@ -88,13 +93,9 @@ public class UserController {
 	 * 测试自定义属性
 	 * @return
 	 */
-	@RequestMapping("/hello")
+	@RequestMapping("/testNeoProperties")
 	public String index() {
-		System.out.println("--------------" + neoProperties.getTitle());
-		String nickName = "";
-		nickName = userService.findByUserNameLike("%bb2%").getNickName();
-		System.out.println(nickName);
-		return "Hello World";
+		return neoProperties.getTitle();
 	}
 
 	/**
@@ -173,5 +174,46 @@ public class UserController {
 		List<UserDTO> userList = userService.testNativeQuery();
 		return userList;
 	}
+
+	/**
+	 * 测试 使用原生sql2
+	 * @return
+	 */
+	@RequestMapping("/testNativeQuery2")
+	@ApiOperation(value = "测试 使用原生sql")
+	public Object testNativeQuery2() {
+		List<UserDTO> userList = userService.testNativeQuery2();
+		return userList;
+	}
+	/**
+	 * 测试 使用原生sql3
+	 * @return
+	 */
+	@RequestMapping("/testNativeQuery3")
+	@ApiOperation(value = "测试 使用原生sql")
+	public Object testNativeQuery3() {
+		List<Object> userList = userService.testNativeQuery3();
+		return userList;
+	}
+	/**
+	 * 测试 使用原生sql3
+	 * @return
+	 */
+	@RequestMapping("/testNativeQuery4")
+	@ApiOperation(value = "测试 使用原生sql")
+	public Object testNativeQuery4() {
+		List<UserModel> userList = userService.testNativeQuery4();
+		return userList;
+	}
+	// /**
+	// * 测试 使用原生sql
+	// * @return
+	// */
+	// @RequestMapping("/testNativeQuery")
+	// @ApiOperation(value = "测试 使用原生sql")
+	// public Object testNativeQuery() {
+	// List<UserDTO> userList = userService.testNativeQuery();
+	// return userList;
+	// }
 
 }

@@ -35,8 +35,9 @@ public class UserDTO implements Serializable {
 	private String nickName;
 
 	// @Transient//此字段不映射成列,不加就会
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 格式化时间
 	@Column(nullable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date regTime;
 
 	public UserDTO() {

@@ -54,9 +54,24 @@ public interface UserRepository extends BaseRepository<UserDTO, Long> {
 	@Query("select u.id,u.userName from UserDTO u")
 	List<UserDTO> testGetSomeField();
 
-	/** 使用原生sql */
-	@Query(value = "select u.id,u.user_name,u.pass_word,u.email,u.nick_name,u.reg_time from user u", nativeQuery = true)
-//	@Query(value = "select u.id,u.user_name,u.pass_word,u.email,u.nick_name from user u", nativeQuery = true)
+	/**
+	 * 使用原生sql
+	 * 
+	 * 这种只能查询全部的字段
+	 */
+	@Query(value = "select u.* from user u", nativeQuery = true)
 	List<UserDTO> testNativeQuery();
+
+	/** 使用原生sql */
+	@Query(value = "select u.id, u.user_name, u.pass_word, u.email, u.nick_name, u.reg_time from user u", nativeQuery = true)
+	List<UserDTO> testNativeQuery2();
+
+	@Query(value = "select u.id,u.user_name,u.pass_word,u.email,u.nick_name from user u", nativeQuery = true)
+	List<Object> testNativeQuery3();
+
+	// @Query(value = "select u.id,u.user_name,u.pass_word,u.email,u.nick_name from user
+		// u", nativeQuery = true)
+	@Query(value = "select u.user_name as userName,u.pass_word as passWord,u.email as email,u.nick_name as nickName from user u", nativeQuery = true)//错误
+	List<UserModel> testNativeQuery4();
 
 }
