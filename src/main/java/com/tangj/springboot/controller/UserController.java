@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value = "/user")
-@Api("测试user业务")
+@Api("用户模块")
 public class UserController {
 
 	@SuppressWarnings("unused")
@@ -68,7 +68,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/getUserList")
-	@ApiOperation(value = "分页查询用户,使用jpa查询")
+	@ApiOperation(value = "分页查询用户,使用jpa查询",notes = "分页+排序")//使用Swagger生成接口文档,访问地址:http://localhost:8080/swagger-ui.html
 	public Object getUserList() {
 		// 页数需从零开始
 		int page = 0, size = 10;
